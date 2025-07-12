@@ -4,7 +4,7 @@ pipeline {
   environment {
     AUTHOR = "Vincent Khoe"
     EMAIL = "vincentkhoe@gmail.com"
-    WEB : "http://www.vincentkhoe.com"
+    WEB = "http://www.vincentkhoe.com"
   }
 
   stages {
