@@ -9,6 +9,7 @@ pipeline {
     stage('Build') {
         steps {
           echo 'Building Stage 1'
+          sleep(5)
           echo 'Building Stage 2'
           echo 'Building Stage 3'
         }
@@ -16,6 +17,7 @@ pipeline {
     stage('Test') {
         steps {
           echo 'Testing Stage 1'
+          sleep(5)
           echo 'Testing Stage 2'
           echo 'Testing Stage 3'
         }
@@ -23,6 +25,7 @@ pipeline {
     stage('Deploy') {
         steps {
           echo 'Deploying Stage 1'
+          sleep(5)
           echo 'Deploying Stage 2'
           echo 'Deploying Stage 3'
         }
