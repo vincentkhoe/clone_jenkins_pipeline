@@ -8,18 +8,23 @@ pipeline {
   stages {
     stage('Build') {
         steps {
-            echo 'Building Stage'
+          echo 'Building Stage 1'
+          echo 'Building Stage 2'
+          echo 'Building Stage 3'
         }
     }
     stage('Test') {
         steps {
-            echo 'Testing Stage'
-            sh('error')
+          echo 'Testing Stage 1'
+          echo 'Testing Stage 2'
+          echo 'Testing Stage 3'
         }
     }
     stage('Deploy') {
         steps {
-            echo 'Deploying Stage'
+          echo 'Deploying Stage 1'
+          echo 'Deploying Stage 2'
+          echo 'Deploying Stage 3'
         }
     }
   }
