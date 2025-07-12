@@ -9,14 +9,14 @@ pipeline {
     stage('Build') {
         steps {
           echo 'Building Stage Start'
-          sh('./mnvw clean compile test-compile')
+          sh('./mvnw clean compile test-compile')
           echo 'Building Stage Complete'
         }
     }
     stage('Test') {
         steps {
           echo 'Testing Stage Start'
-          sh('./mnvw test')
+          sh('./mvnw test')
           echo 'Testing Stage Complete'
         }
     }
