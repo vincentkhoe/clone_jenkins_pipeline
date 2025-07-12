@@ -8,25 +8,21 @@ pipeline {
   stages {
     stage('Build') {
         steps {
-          echo 'Building Stage 1'
-          sleep(5)
-          echo 'Building Stage 2'
-          echo 'Building Stage 3'
+          echo 'Building Stage Start'
+          sh('./mnvw clean compile test-compile')
+          echo 'Building Stage Complete'
         }
     }
     stage('Test') {
         steps {
-          echo 'Testing Stage 1'
-          sleep(5)
-          echo 'Testing Stage 2'
-          echo 'Testing Stage 3'
+          echo 'Testing Stage Start'
+          sh('./mnvw test')
+          echo 'Testing Stage Complete'
         }
     }
     stage('Deploy') {
         steps {
           echo 'Deploying Stage 1'
-          sleep(5)
-          echo 'Deploying Stage 2'
           echo 'Deploying Stage 3'
         }
     }
