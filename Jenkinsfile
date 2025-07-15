@@ -32,30 +32,42 @@ pipeline {
         APP = credentials("vincent_secret")
       }
 
-      agent {
-        node {
-          label "linux && java17"
-        }
-      }
+      failFast true
 
-      stages {
-        stage ('Prepare Java') {
-          steps {
-            echo "Preparing Java"
+      parallel {
+        stages {
+          stage ('Prepare Java') {
+            agent {
+              node {
+                label "linux && java17"
+              }
+            }
+
+            steps {
+              echo "Preparing Java"
+              sleep (5)
+            }
           }
-        }
 
-        stage ('Prepare ENV Variable'){
-          steps {
-            echo ("Author: ${AUTHOR}")
-            echo ("Email: ${EMAIL}")
-            echo ("Web: ${WEB}")
-            echo ("APP User: ${APP_USR}")
-            sh ('echo "APP Password: $APP_PSW" > "secret.txt"')
-            sh ("echo 'APP Password: ${APP_PSW}' > 'secret2.txt'")
-            echo ("Start Job: ${env.JOB_NAME}")
-            echo ("Start Build: ${env.BUILD_NUMBER}")
-            echo ("Branch Name: ${env.BRANCH_NAME}")
+          stage ('Prepare ENV Variable'){
+            agent {
+              node {
+                label "linux && java17"
+              }
+            }
+
+            steps {
+              echo ("Author: ${AUTHOR}")
+              echo ("Email: ${EMAIL}")
+              echo ("Web: ${WEB}")
+              echo ("APP User: ${APP_USR}")
+              sh ('echo "APP Password: $APP_PSW" > "secret.txt"')
+              sh ("echo 'APP Password: ${APP_PSW}' > 'secret2.txt'")
+              echo ("Start Job: ${env.JOB_NAME}")
+              echo ("Start Build: ${env.BUILD_NUMBER}")
+              echo ("Branch Name: ${env.BRANCH_NAME}")
+              sleep (5)
+            }
           }
         }
       }
