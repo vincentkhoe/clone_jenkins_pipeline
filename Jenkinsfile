@@ -118,7 +118,7 @@ pipeline {
         ok "Yes, confirm!"
         submitter "vincent, rachel"
         parameters {
-          choice (name: "TARGET_ENV", choices ['DEV', 'QA', 'PROD'], description: "Select deploy area")
+          choice (name: "TARGET_ENV", choices: ['DEV', 'QA', 'PROD'], description: "Select deploy area")
         }
       }
 
