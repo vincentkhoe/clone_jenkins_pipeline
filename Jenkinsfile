@@ -7,6 +7,12 @@ pipeline {
     WEB = "http://www.vincentkhoe.com"
   }
 
+  triggers {
+    cron (*/5 * * * *)
+    //pollSCM (*/5 * * * *)
+    //upstream (upstreamProjects: "")
+  }
+
   parameters {
     string(name: 'NAME', defaultValue: 'Guest', description: 'What is your name?')
     text(name: 'DESCRIPTION', defaultValue: '', description: 'Tell me about you')
