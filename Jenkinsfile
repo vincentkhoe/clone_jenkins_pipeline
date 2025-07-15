@@ -27,6 +27,40 @@ pipeline {
   }
 
   stages {
+    stage('Prepare') {
+      environment {
+        APP = credentials("vincent_secret")
+      }
+
+      agent {
+        node {
+          label "linux && java17"
+        }
+      }
+
+      stages {
+        stage ('Prepare Java') {
+          steps {
+            echo "Preparing Java"
+          }
+        }
+
+        stage ('Prepare ENV Variable'){
+          steps {
+            echo ("Author: ${AUTHOR}")
+            echo ("Email: ${EMAIL}")
+            echo ("Web: ${WEB}")
+            echo ("APP User: ${APP_USR}")
+            sh ('echo "APP Password: $APP_PSW" > "secret.txt"')
+            sh ("echo 'APP Password: ${APP_PSW}' > 'secret2.txt'")
+            echo ("Start Job: ${env.JOB_NAME}")
+            echo ("Start Build: ${env.BUILD_NUMBER}")
+            echo ("Branch Name: ${env.BRANCH_NAME}")
+          }
+        }
+      }
+    }
+
     stage('parameters') {
       agent {
         node {
@@ -40,31 +74,6 @@ pipeline {
         echo ("Deploy Status: ${params.DEPLOY}")
         echo ("Social Media: ${params.SOCIAL_MEDIA}")
         echo ("Password: ${params.SECRET}")
-      }
-    }
-
-
-    stage('Prepare') {
-      environment {
-        APP = credentials("vincent_secret")
-      }
-
-      agent {
-        node {
-          label "linux && java17"
-        }
-      }
-
-      steps {
-        echo ("Author: ${AUTHOR}")
-        echo ("Email: ${EMAIL}")
-        echo ("Web: ${WEB}")
-        echo ("APP User: ${APP_USR}")
-        sh ('echo "APP Password: $APP_PSW" > "secret.txt"')
-        sh ("echo 'APP Password: ${APP_PSW}' > 'secret2.txt'")
-        echo ("Start Job: ${env.JOB_NAME}")
-        echo ("Start Build: ${env.BUILD_NUMBER}")
-        echo ("Branch Name: ${env.BRANCH_NAME}")
       }
     }
 
