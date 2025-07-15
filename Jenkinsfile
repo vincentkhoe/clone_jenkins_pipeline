@@ -7,6 +7,11 @@ pipeline {
     WEB = "http://www.vincentkhoe.com"
   }
 
+  options {
+    disableConcurrentBuilds()
+    timeout(time:10, unit: 'SECONDS')
+  }
+
   stages {
     stage('Prepare') {
       environment {
