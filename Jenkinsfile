@@ -27,6 +27,34 @@ pipeline {
   }
 
   stages {
+    stage("OS Config") {
+      matrix {
+        axes {
+          axis {
+            name "OS"
+            values "linux, windows, mac"
+          }
+          axis {
+            name "ARC"
+            values "32, 64"
+          }
+        }
+      }
+      stages {
+        stage("OS Setup") {
+          agent {
+            node {
+              label "linux && java17"
+            }
+          }
+
+          steps {
+            echo ("Setup ${OS} ${ARC}")
+          }
+        }
+      }
+    }
+
     stage('Prepare') {
       environment {
         APP = credentials("vincent_secret")
