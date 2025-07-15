@@ -39,8 +39,8 @@ pipeline {
             values "32, 64"
           }
         }
-      }
-      stages {
+
+        stages {
         stage("OS Setup") {
           agent {
             node {
@@ -52,6 +52,7 @@ pipeline {
             echo ("Setup ${OS} ${ARC}")
           }
         }
+      }
       }
     }
 
