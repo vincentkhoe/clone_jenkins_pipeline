@@ -112,9 +112,18 @@ pipeline {
           label "linux && java17"
         }
       }
+
+      input {
+        message "Confirm to deplay?"
+        ok "Yes, confirm!"
+        submitter "vincent, rachel"
+        parameters {
+          choice (name: "TARGET_ENV", choices ['DEV', 'QA', 'PROD'], description: "Select deploy area")
+        }
+      }
+
       steps {
-        echo 'Deploying Stage 1'
-        echo 'Deploying Stage 3'
+        echo "Deployed to ${TARGET_ENV}"
       }
     }
   }
