@@ -8,9 +8,9 @@ pipeline {
   }
 
   triggers {
-    cron("*/5 * * * *")
+    //cron("*/5 * * * *")
     //pollSCM (*/5 * * * *)
-    //upstream (upstreamProjects: "")
+    upstream (upstreamProjects: 'Learn Jenkins', threshold: hudson.model.Result.SUCCESS)
   }
 
   parameters {
