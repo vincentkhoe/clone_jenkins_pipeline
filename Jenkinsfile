@@ -203,8 +203,8 @@ pipeline {
 
       steps {
         withCredentials([usernamePassword(
-          credentialsId: "vincent_super_secret"
-          usernameVariable: "USER"
+          credentialsId: "vincent_super_secret",
+          usernameVariable: "USER",
           passwordVariable: "PASSWORD"
         )]){
           sh ('echo "Release it with -u $USER -p $PASSWORD" > "release.txt"')
